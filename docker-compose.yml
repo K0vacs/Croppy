@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+
+  web:
+    container_name: croppy_web
+    build: ./frontend
+    restart: always
+    volumes:
+      - "./frontend:/app"
+      - "images:/app/public/images"
+    ports:
+      - "3000:3000"
+
+  node:
+    container_name: croppy_node
+    build: ./backend
+    restart: always
+    volumes:
+      - "./backend:/app"
+      - "images:/app/images"
+    ports:
+      - "3001:3001"
+
+volumes:
+  images:
